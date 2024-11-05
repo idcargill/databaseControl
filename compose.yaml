@@ -1,0 +1,74 @@
+# If you need more help, visit the Docker compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+services:
+  # server:
+  #   build:
+  #     context: .
+  #   environment:
+  #     NODE_ENV: production
+  #   ports:
+  #     - 3000:3000
+  #   # The commented out section below is an example of how to define a PostgreSQL
+  #   # database that your application can use. `depends_on` tells Docker Compose to
+  #   # start the database before your application. The `db-data` volume persists the
+  #   # database data between container restarts. The `db-password` secret is used
+  #   # to set the database password. You must create `db/password.txt` and add
+  #   # a password of your choosing to it before running `docker-compose up`.
+  #   depends_on:
+  #     maria-db:
+  #       condition: service_healthy
+  maria-db:
+    image: mariadb
+    container_name: mariadb
+    restart: always
+    # user: mariadb
+    # secrets:
+    # - mariadb-password
+    # - MYSQL_ROOT_PASSWORD
+    # - mariadb-root-password
+    volumes:
+      - db-data:/var/lib/mariadb/data
+    environment:
+      - MARIADB_DATABASE=dahliaDb
+      - MARIADB_USER=mariadb
+      - MARIADB_PASSWORD=password
+      - MARIADB_ROOT_PASSWORD=rootPassword
+      - MYSQL_USER=mariadb
+      - MYSQL_PASSWORD=password
+
+      # - MYSQL_PASSWORD=password
+      # - MYSQL_ROOT_PASSWORD=rootPassword
+      # - MARIADB_PASSWORD_FILE=/run/secrets/mariadb-password
+      # - MARIADB_ROOT_PASSWORD_HASH=""
+      # - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=""
+      # - MARIADB_RANDOM_ROOT_PASSWORD=""
+    ports:
+      - 3306:3306
+    networks:
+      - db_network
+    # healthcheck:
+    # expose:
+    #   - 3306
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 2
+volumes:
+  db-data:
+networks:
+  db_network:
+    driver: bridge
+secrets:
+  MARIADB_PASSWORD:
+    file: secrets/mariadb-password.txt
+#   mariadb-root-password:
+#     file: secrets/mariadb-root-password.txt
+#   MYSQL_ROOT_PASSWORD:
+#     file: secrets/mariadb-root-password.txt
