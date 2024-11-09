@@ -1,7 +1,7 @@
 import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
 
-@Entity()
-export class User {
+@Entity({ name: "User", schema: "dahliaDb" })
+export default class User {
   @PrimaryGeneratedColumn({ type: "int" })
   // @ts-expect-error auto genrated by DB
   id: number;

@@ -7,13 +7,13 @@ export const UserDataSouce = new DataSource({
   username: "mariadb",
   password: "password",
   database: "dahliaDb",
-  entities: [__dirname + "/../entities/*.ts"],
+  entities: [__dirname + "/entities/*.ts"],
   synchronize: true,
 });
 
 UserDataSouce.initialize()
   .then(() => {
-    console.log("Data Source has been initialized!");
+    console.log("User Data Source has been initialized!");
   })
   .catch((err) => {
     console.error("Error during Data Source initialization", err);

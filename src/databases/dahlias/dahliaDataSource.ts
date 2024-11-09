@@ -13,7 +13,7 @@ export const DahliaDataSource = new DataSource({
 
 DahliaDataSource.initialize()
   .then(() => {
-    console.log("Data Source has been initialized!");
+    console.log("Dahlias Data Source has been initialized!");
   })
   .catch((err) => {
     console.error("Error during Data Source initialization", err);

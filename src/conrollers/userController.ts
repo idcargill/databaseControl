@@ -1,28 +1,30 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { UserDataSouce } from "../datasources/userDataSource";
-import { User } from "../entities/User";
-import { Get, Post } from "routing-controllers";
+import { UserDataSouce } from "../databases/users/userDataSource";
+import  User  from "../databases/users/entities/User";
+import { GET, POST, Controller } from "fastify-decorators"
 
-export class UserController {
-  @Get("/users")
-  static async getUsers() {
+@Controller('/users')
+export default class UserController {
+  @GET()
+  async getHandler() {
+    console.log('getting users route');
     const users = await UserDataSouce.manager.findAndCount(User);
     return users;
   }
 
-  @Get("/users/:id")
-  static async getUserById(
-    req: FastifyRequest<{ Params: { id: number } }>,
-    reply: FastifyReply,
-  ) {
-    const id = req.params.id;
-    const user = await UserDataSouce.manager.findOneBy(User, { id });
-    reply.send(user);
-    return user;
-  }
+  // @GET("/:id")
+  // static async getUserById(
+  //   req: FastifyRequest<{ Params: { id: number } }>,
+  //   reply: FastifyReply,
+  // ) {
+  //   const id = req.params.id;
+  //   const user = await UserDataSouce.manager.findOneBy(User, { id });
+  //   reply.send(user);
+  //   return user;
+  // }
 
-  @Post("/users")
-  static async updateOrCreateUser(req: FastifyRequest, reply: FastifyReply) {
+  @POST()
+  async updateOrCreateUser(req: FastifyRequest, reply: FastifyReply) {
     if (!req.body) {
       throw new Error("Request body is empty");
     }
@@ -31,11 +33,20 @@ export class UserController {
 
     const newUser = new User(
       payload.firstName,
-      payload.lastName,
-      payload.email,
+      payload.lastName ?? null,
+      payload.email ?? null,
     );
 
-    await UserDataSouce.manager.save(newUser);
-    reply.send("New user created");
+    try {
+      await UserDataSouce.manager.save(newUser);
+      // const repo = await UserDataSouce.getRepository(User);
+      // console.log(repo);
+      // await repo.save(newUser);
+      reply.send("New user created");
+    } catch (err) {
+      console.log('Error creating a user')
+      console.log(err);
+      reply.send({ error: err });
+    }
   }
 }

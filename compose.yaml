@@ -25,7 +25,7 @@ services:
   #       condition: service_healthy
   maria-db:
     image: mariadb
-    container_name: mariadb
+    container_name: maria-db
     restart: always
     # user: mariadb
     # secrets:
@@ -42,26 +42,45 @@ services:
       - MYSQL_USER=mariadb
       - MYSQL_PASSWORD=password
 
-      # - MYSQL_PASSWORD=password
-      # - MYSQL_ROOT_PASSWORD=rootPassword
-      # - MARIADB_PASSWORD_FILE=/run/secrets/mariadb-password
-      # - MARIADB_ROOT_PASSWORD_HASH=""
-      # - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=""
-      # - MARIADB_RANDOM_ROOT_PASSWORD=""
     ports:
       - 3306:3306
     networks:
       - db_network
-    # healthcheck:
-    # expose:
-    #   - 3306
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 10s
       timeout: 5s
       retries: 2
+
+  db-containers:
+    image: mariadb
+    container_name: db-containers
+    restart: always
+    # user: mariadb
+    # secrets:
+    # - mariadb-password
+    # - MYSQL_ROOT_PASSWORD
+    # - mariadb-root-password
+    volumes:
+      - db-containers-data:/var/lib/mariadb/data
+    environment:
+      - MARIADB_DATABASE=containers
+      - MARIADB_USER=containers
+      - MARIADB_PASSWORD=password
+      - MARIADB_ROOT_PASSWORD=rootPassword
+    ports:
+      - 3308:3306
+    networks:
+      - db_network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 2
+  
 volumes:
   db-data:
+  db-containers-data:
 networks:
   db_network:
     driver: bridge

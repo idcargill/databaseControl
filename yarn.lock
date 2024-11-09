@@ -1988,6 +1988,18 @@ fast-uri@^3.0.0, fast-uri@^3.0.1:
   resolved "https://registry.yarnpkg.com/fast-uri/-/fast-uri-3.0.3.tgz#892a1c91802d5d7860de728f18608a0573142241"
   integrity sha512-aLrHthzCjH5He4Z2H9YZ+v6Ujb9ocRuW6ZzkJQOrTxleEijANq4v1TsaPaVG1PZcuurEzrLcWRyYBYXD5cEiaw==
 
+fastify-decorators@^3.16.1:
+  version "3.16.1"
+  resolved "https://registry.yarnpkg.com/fastify-decorators/-/fastify-decorators-3.16.1.tgz#95763a3f40aa4409411db014d4ae8c39b98638d5"
+  integrity sha512-f4VPgB126g1PIvjx8zZabXviWUngz9xKsfmw9DxvWkJ0ycrbnDY+mivJ6qtDHCcJqyBg26fgunzNCBK/j8nbhw==
+  dependencies:
+    fastify-plugin "^2.0.0 || ^3.0.0 || ^4.0.0"
+
+"fastify-plugin@^2.0.0 || ^3.0.0 || ^4.0.0":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-4.5.1.tgz#44dc6a3cc2cce0988bc09e13f160120bbd91dbee"
+  integrity sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==
+
 fastify@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/fastify/-/fastify-5.0.0.tgz#f8f80bd741bde2de1997c25dbe31e61c91978111"
