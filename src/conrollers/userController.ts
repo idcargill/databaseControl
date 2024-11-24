@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { UserDataSouce } from "../databases/users/userDataSource";
-import  User  from "../databases/users/entities/User";
+import { ManateeDataSource } from "../dataSources";
+import User from "../dataSources/manateeDB/entities/User";
 import { GET, POST, Controller } from "fastify-decorators"
 
 @Controller('/users')
@@ -8,7 +8,7 @@ export default class UserController {
   @GET()
   async getHandler() {
     console.log('getting users route');
-    const users = await UserDataSouce.manager.findAndCount(User);
+    const users = await ManateeDataSource.manager.findAndCount(User);
     return users;
   }
 
@@ -38,7 +38,7 @@ export default class UserController {
     );
 
     try {
-      await UserDataSouce.manager.save(newUser);
+      await ManateeDataSource.manager.save(newUser);
       // const repo = await UserDataSouce.getRepository(User);
       // console.log(repo);
       // await repo.save(newUser);

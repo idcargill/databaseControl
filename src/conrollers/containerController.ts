@@ -1,7 +1,7 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { ContainerDataSource } from '../databases/containerStorage/containerDataSouce';
+import { ManateeDataSource } from "../dataSources";
 import { POST, Controller } from "fastify-decorators";
-import { Container } from '../databases/containerStorage/entities/container';
+import { Container } from '../dataSources/manateeDB/entities/storage/container';
 
 @Controller("/containers")
 export default class ContainerController {
@@ -28,7 +28,7 @@ export default class ContainerController {
     @POST()
     async createContainer(req: FastifyRequest, reply: FastifyReply) {
         const container = new Container(1, 1, true, "test", "test");
-        await ContainerDataSource.manager.save(container);
+        await ManateeDataSource.manager.save(container);
         return reply.send("create container");
     }
 }

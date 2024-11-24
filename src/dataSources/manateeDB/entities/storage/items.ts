@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { ItemCategoryTypeEnum } from "./ItemCategory";
 import { ItemSubCategory } from './ItemSubCategory';
 
-@Entity()
+@Entity('storage_items')
 export class Items {
     @PrimaryGeneratedColumn({ type: "integer" })
     // @ts-expect-error auto genrated by DB

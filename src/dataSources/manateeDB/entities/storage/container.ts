@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('storage_container')
 export class Container {
     @PrimaryGeneratedColumn({ type: "integer" })
     // @ts-expect-error auto genrated by DB
