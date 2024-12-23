@@ -27,5 +27,12 @@ Projecs share 1 database, entites can be routed by directory.
     - storage_users
 
     - lists_toOo
+    _ lists_notes
 
 - stale data can be moved to s3 someday
+
+
+
+### TODO
+- Authentication
+- Deploy on manatee-dahlias.com

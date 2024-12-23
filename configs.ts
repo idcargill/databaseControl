@@ -7,7 +7,8 @@ export default {
         baseUrl: env.get('SUPABASE_MANATEE_URL').asString(),
         userName: env.get('SUPABASE_MANATEE_USER_NAME').asString(),
         password: env.get('SUPABASE_MANATEE_PASSWORD').asString(),
-        port: env.get('SUPABASE_MANATEE_PORT').asInt()
+        port: env.get('SUPABASE_MANATEE_PORT').asInt(),
+        manateeSchemaName: env.get('MANATEE_SCHEMA_NAME').asString()
     },
     server: {
         port: env.get('PORT').asInt()

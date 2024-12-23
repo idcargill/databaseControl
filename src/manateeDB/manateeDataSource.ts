@@ -8,7 +8,7 @@ export const ManateeDataSource = new DataSource({
   username: config.manateeDb.userName,
   password: config.manateeDb.password,
   database: config.manateeDb.databaseName,
-  schema: 'manatee_db',
+  schema: config.manateeDb.manateeSchemaName,
   logging: false,
   entities: [__dirname + "/entities/*.ts", __dirname + "/entities/*/*.ts"],
   synchronize: true,
