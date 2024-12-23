@@ -107,7 +107,7 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*.ts", "src/dataSources/manateeDB/entities/User.ts", "configs.ts"],
+  "include": ["src/**/*.ts", "src/manateeDB/entities/User.ts", "configs.ts"],
   "exclude": ["node_modules"],
   "ts-node": {
     "esm": true,

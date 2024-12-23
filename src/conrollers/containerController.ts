@@ -1,8 +1,10 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { ManateeDataSource } from "../dataSources";
+import { ManateeDataSource } from "../manateeDB";
 import { POST, Controller } from "fastify-decorators";
-import { Container } from '../dataSources/manateeDB/entities/storage/container';
+import { Container } from '../manateeDB/entities/storage/container';
 
+
+// TODO this is a placeholder for now
 @Controller("/containers")
 export default class ContainerController {
     // @GET("/user/:userId")

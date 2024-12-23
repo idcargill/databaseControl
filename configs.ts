@@ -8,5 +8,8 @@ export default {
         userName: env.get('SUPABASE_MANATEE_USER_NAME').asString(),
         password: env.get('SUPABASE_MANATEE_PASSWORD').asString(),
         port: env.get('SUPABASE_MANATEE_PORT').asInt()
+    },
+    server: {
+        port: env.get('PORT').asInt()
     }
 }

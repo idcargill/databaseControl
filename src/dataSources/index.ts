@@ -1,1 +1,0 @@
-export { ManateeDataSource } from './manateeDB/manateeDataSource';

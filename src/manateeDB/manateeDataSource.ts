@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import config from "../../../configs";
+import config from "../../configs";
 
 export const ManateeDataSource = new DataSource({
   type: 'postgres',
@@ -8,14 +8,17 @@ export const ManateeDataSource = new DataSource({
   username: config.manateeDb.userName,
   password: config.manateeDb.password,
   database: config.manateeDb.databaseName,
-  schema: 'manatee_db', // ?
-  entities: [__dirname + "/entities/*.ts", __dirname + "/entities/*/*.js"],
+  schema: 'manatee_db',
+  logging: false,
+  entities: [__dirname + "/entities/*.ts", __dirname + "/entities/*/*.ts"],
   synchronize: true,
 });
 
+
 ManateeDataSource.initialize()
   .then(() => {
-    console.log("User Data Source has been initialized!");
+    console.log("manatee_db data Source has been initialized!");
+    ManateeDataSource.query('CREATE SCHEMA IF NOT EXISTS manatee_db;');
   })
   .catch((err) => {
     console.log(config.manateeDb)

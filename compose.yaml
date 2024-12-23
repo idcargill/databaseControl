@@ -59,7 +59,7 @@ services:
     shm_size: 128mb
     # or set shared memory limit when deploy via swarm stack
     volumes:
-      - db-postgres-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     #  - type: tmpfs
     #    target: /dev/shm
     #    tmpfs:
@@ -67,6 +67,7 @@ services:
     environment:
       # POSTGRES_USER: manateeDB
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: manatee_db
     ports:
       - 5432:5432
 
@@ -74,7 +75,7 @@ services:
 volumes:
   # db-data:
   # db-containers-data:
-  db-postgres-data:
+  postgres-data:
 networks:
   db_network:
     driver: bridge

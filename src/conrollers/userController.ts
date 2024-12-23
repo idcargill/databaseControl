@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { ManateeDataSource } from "../dataSources";
-import User from "../dataSources/manateeDB/entities/User";
+import { ManateeDataSource } from "../manateeDB";
+import User from "../manateeDB/entities/User";
 import { GET, POST, Controller } from "fastify-decorators"
 
 @Controller('/users')

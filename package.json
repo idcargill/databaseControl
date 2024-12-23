@@ -19,8 +19,9 @@
   },
   "scripts": {
     ".": "====== DEV ===============",
-    "dev": "npx tsx node_modules/nodemon/bin/nodemon --watch src/server.ts",
-    "startDb": "docker compose up . --build",
+    "dev": "yarn startDb && yarn startServer",
+    "startDb": "docker compose up --build --detach",
+    "startServer": "npx tsx node_modules/nodemon/bin/nodemon --watch src/server.ts",
     "-": "====== Docker Commands ===============",
     "build": "npx tsc src/server.ts --outDir dist",
     "start": "node dist/server.js"

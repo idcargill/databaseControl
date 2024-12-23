@@ -21,8 +21,11 @@ Projecs share 1 database, entites can be routed by directory.
 - projectname_tablename
     - dahlias_rds
     - dahlias_users
+
     - storage_categories
     - storage_items
     - storage_users
+
+    - lists_toOo
 
 - stale data can be moved to s3 someday
